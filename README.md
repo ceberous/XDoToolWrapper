@@ -1,7 +1,7 @@
 # XDoToolWrapper
 
 ```
-const XDoToolWrapper = require( "xdotoolwrapper" );
+const XDoToolWrapper = require( "xdotool-wrapper" );
 
 var x1 = new XDoToolWrapper.wrap.name( "chrome" );
 console.log( x1.display );

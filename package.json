@@ -10,8 +10,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ceberous/XDoToolWrapper"
-  },  
-  "url": "https://github.com/ceberous/XDoToolWrapper" ,   
+  },
+  "url": "https://github.com/ceberous/XDoToolWrapper",
   "license": "ISC",
   "dependencies": {
     "shelljs": "^0.7.8"
