@@ -20,6 +20,18 @@ class WindowName extends XDoToolBase {
 		if ( x1 ) { x1 = x1.split( "\n" ); x1 = x1[ 0 ]; }
 		return x1;
 	}
+
+	async ensureWindowNameIsReady( wName ) {
+		let xFoundID = null;
+		let xFound = false;
+		while( !xFound ) {
+			//wExecSync("sleep 1");
+			await sleep( 1000 );
+			xFoundID = this.windowIDFromName( wName );
+			if ( xFoundID !== null  ) { if ( xFoundID.length > 1 ) { xFound = true; } }
+		}
+		console.log( "XDoTool-Wrapper --> X-Window READY !!! " + xFoundID );
+	}	
 }
 
 module.exports = WindowName;
