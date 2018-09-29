@@ -40,7 +40,7 @@ class XDoToolBase {
 				SxC = ( parseInt( xF.primary.x ) + ( parseInt( xF.secondary.y ) / 2 ) );
 			}
 			else {
-				SxC = parseInt( xF.secondary.y ) / 2 );
+				SxC = ( parseInt( xF.secondary.y ) / 2 );
 			}
 			let SyC = ( parseInt( xF.secondary.y ) / 2 );
 			xF.secondary.centers = { x: SxC.toString() , y: SyC.toString() };
