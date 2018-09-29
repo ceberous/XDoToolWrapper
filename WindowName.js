@@ -21,13 +21,13 @@ class WindowName extends XDoToolBase {
 		return x1;
 	}
 
-	async ensureWindowNameIsReady( wName ) {
+	async ensureWindowNameIsReady() {
 		let xFoundID = null;
 		let xFound = false;
 		while( !xFound ) {
 			//wExecSync("sleep 1");
 			await super.sleep( 1000 );
-			xFoundID = this.windowIDFromName( wName );
+			xFoundID = this.windowIDFromName;
 			if ( xFoundID !== null  ) { if ( xFoundID.length > 1 ) { xFound = true; } }
 		}
 		console.log( "XDoTool-Wrapper --> X-Window READY !!! " + xFoundID );
