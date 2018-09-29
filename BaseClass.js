@@ -42,23 +42,28 @@ class XDoToolBase {
 	}
 
 	activateWindow() {
+		if ( !this.windowID ) { return; }
 		return this.exec( "xdotool windowactivate " + this.windowID );
 	}
 
 	focusWindow() {
+		if ( !this.windowID ) { return; }
 		return this.exec( "xdotool windowfocus " + this.windowID );
 	}
 
 	refocusWindow() {
+		if ( !this.windowID ) { return; }
 		this.activateWindow();
 		return this.focusWindow();
 	}
 
 	raiseWindow() {
+		if ( !this.windowID ) { return; }
 		return this.exec( "xdotool windowraise " + this.windowID );
 	}
 
 	windowGeometry() {
+		if ( !this.windowID ) { return; }
 		this.refocusWindow();
 		let g1 = this.exec( "xdotool getactivewindow getwindowgeometry" );
 		g1 = g1.split( "\n" );
@@ -76,11 +81,13 @@ class XDoToolBase {
 	}
 
 	unmaximizeWindow() {
+		if ( !this.windowID ) { return; }
 		this.refocusWindow();
 		return this.exec( "wmctrl -ir " + this.windowID + " -b remove,maximized_ver,maximized_horz" );
 	}
 
 	maximizeWindow() {
+		if ( !this.windowID ) { return; }
 		this.refocusWindow();
 		return this.exec( "xdotool key F11" );
 	}
@@ -120,3 +127,22 @@ class XDoToolBase {
 }
 
 module.exports = XDoToolBase;
+
+
+
+// function wWindowMove( wID , wScreenNum ) {
+// 	var windowMove = 'xdotool getactivewindow windowmove %' + wScreenNum  + ' 0 0';
+// 	var wExec1 = exec( SET_DISPLAY + windowMove , { silent: true ,  async: false } );
+// 	if ( wExec1.stderr.length > 1 ) { wcl( "ERROR --> Could not Move Window ID" ); wcl( wExec1.stderr );return null; }
+// 	else { return true; }
+// }
+
+// function wSetWindowIDFullScreen( wID , wScreenNum ) {
+// 	var setToFullScreen = 'xdotool windowsize ';
+// 	if ( wScreenNum ) { setToFullScreen = setToFullScreen + ' ' + wID + ' 100% 100%'; }
+// 	else { setToFullScreen = setToFullScreen + wID + ' 100% 100%';  }
+
+// 	var wSetFull = exec( SET_DISPLAY + setToFullScreen , { silent: true , async: false });
+// 	if ( wSetFull.stderr.length > 1 ) { wcl( "ERROR --> Could not set Window ID to Full Screen" ); wcl( wSetFull.stderr ); return null; }
+// 	else { return true; }
+// }
