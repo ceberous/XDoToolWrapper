@@ -26,7 +26,7 @@ class WindowName extends XDoToolBase {
 		let xFound = false;
 		while( !xFound ) {
 			//wExecSync("sleep 1");
-			await sleep( 1000 );
+			await super.sleep( 1000 );
 			xFoundID = this.windowIDFromName( wName );
 			if ( xFoundID !== null  ) { if ( xFoundID.length > 1 ) { xFound = true; } }
 		}
