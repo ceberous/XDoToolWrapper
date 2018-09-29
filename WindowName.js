@@ -10,7 +10,6 @@ class WindowName extends XDoToolBase {
 	windowIDFromName() {
 		//let x1 = this.exec( "xdotool search --name '" + this.windowName + "'" );
 		let x1 = this.exec( "xdotool search --desktop 0 --name '" + this.windowName + "'" );
-		console.log( x1 );
 		if ( x1 ) { x1 = x1.split( "\n" ); x1 = x1[ 0 ]; }
 		this.windowID = x1;
 		return x1;
