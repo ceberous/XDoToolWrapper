@@ -27,7 +27,7 @@ class WindowName extends XDoToolBase {
 			try {
 				let xFound = false;
 				while( !xFound ) { xFound = that.searchID(); await sleep( 1000 ); }
-				console.log( "XDoTool-Wrapper --> X-Window READY !!! " + this.windowID );
+				console.log( "XDoTool-Wrapper --> X-Window READY !!! " + that.windowID );
 				resolve();
 			}
 			catch( error ) { console.log( error ); reject( error ); }
