@@ -35,7 +35,6 @@ class XDoToolBase {
 		}
 		if ( xF.secondary ) {
 			let SxC;
-			let SyC;
 			if ( xF.primary ) {
 				SxC = ( parseInt( xF.primary.x ) + ( parseInt( xF.secondary.y ) / 2 ) );
 			}
