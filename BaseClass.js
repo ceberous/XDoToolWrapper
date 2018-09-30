@@ -57,10 +57,13 @@ class XDoToolBase {
 		return this.exec( "xdotool windowfocus " + this.windowID );
 	}
 
-	refocusWindow() {
+	async refocusWindow() {
 		if ( !this.windowID ) { return; }
 		this.activateWindow();
-		return this.focusWindow();
+		await this.sleep( 300 );
+		this.focusWindow();
+		await this.sleep( 500 );
+		return;
 	}
 
 	raiseWindow() {
@@ -68,9 +71,9 @@ class XDoToolBase {
 		return this.exec( "xdotool windowraise " + this.windowID );
 	}
 
-	windowGeometry() {
+	async windowGeometry() {
 		if ( !this.windowID ) { return; }
-		this.refocusWindow();
+		await this.refocusWindow();
 		let g1 = this.exec( "xdotool getactivewindow getwindowgeometry" );
 		g1 = g1.split( "\n" );
 		if ( g1.length < 3 ) { return; }
@@ -86,50 +89,50 @@ class XDoToolBase {
 		return this.windowGeometry; 
 	}
 
-	unmaximizeWindow() {
+	async unmaximizeWindow() {
 		if ( !this.windowID ) { return; }
-		this.refocusWindow();
+		await this.refocusWindow();
 		return this.exec( "wmctrl -ir " + this.windowID + " -b remove,maximized_ver,maximized_horz" );
 	}
 
-	maximizeWindow() {
+	async maximizeWindow() {
 		if ( !this.windowID ) { return; }
-		this.refocusWindow();
+		await this.refocusWindow();
 		return this.exec( "xdotool key F11" );
 	}
 
 	fullScreen() { this.maximizeWindow(); }	
 
-	moveMouse( x , y ) {
-		this.refocusWindow();
+	async moveMouse( x , y ) {
+		await this.refocusWindow();
 		x = x.toString() || "0";
 		y = y.toString() || "0";
 		return this.exec( "xdotool mousemove " + x + " " + y );
 	}
 
-	leftClick() {
-		this.refocusWindow();
+	async leftClick() {
+		await this.refocusWindow();
 		return this.exec( "xdotool click 1" );
 	}
 
-	rightClick() {
-		this.refocusWindow();
+	async rightClick() {
+		await this.refocusWindow();
 		return this.exec( "xdotool click 2" );
 	}
 
-	doubleClick() {
-		this.refocusWindow();
+	async doubleClick() {
+		await this.refocusWindow();
 		return this.exec( "xdotool click --repeat 2 --delay 200 1" );
 	}
 
-	centerMouse() {
+	async centerMouse() {
 		if ( !this.windowGeometry ) { return; }
-		this.refocusWindow();
+		await this.refocusWindow();
 		this.moveMouse( this.windowGeometry.center.x , this.windowGeometry.center.y );
 	}
 
-	pressKeyboardKey( wKey ) {
-		this.refocusWindow();
+	async pressKeyboardKey( wKey ) {
+		await this.refocusWindow();
 		return this.exec( "xdotool key '" + wKey + "'" );
 	}
 
