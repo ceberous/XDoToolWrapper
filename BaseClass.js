@@ -101,6 +101,7 @@ class XDoToolBase {
 	fullScreen() { this.maximizeWindow(); }	
 
 	moveMouse( x , y ) {
+		this.refocusWindow();
 		x = x.toString() || "0";
 		y = y.toString() || "0";
 		return this.exec( "xdotool mousemove " + x + " " + y );
@@ -123,10 +124,12 @@ class XDoToolBase {
 
 	centerMouse() {
 		if ( !this.windowGeometry ) { return; }
+		this.refocusWindow();
 		this.moveMouse( this.windowGeometry.center.x , this.windowGeometry.center.y );
 	}
 
 	pressKeyboardKey( wKey ) {
+		this.refocusWindow();
 		return this.exec( "xdotool key '" + wKey + "'" );
 	}
 
